@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35303.130
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MechSoft", "MechSoft.csproj", "{CED4FF77-EB70-4FA5-84EB-1AA54374EE6F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CED4FF77-EB70-4FA5-84EB-1AA54374EE6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CED4FF77-EB70-4FA5-84EB-1AA54374EE6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CED4FF77-EB70-4FA5-84EB-1AA54374EE6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CED4FF77-EB70-4FA5-84EB-1AA54374EE6F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CCD65A10-1CE0-4C93-905A-9C744025E060}
+	EndGlobalSection
+EndGlobal
