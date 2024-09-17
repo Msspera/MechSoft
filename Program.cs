@@ -1,7 +1,14 @@
+using MechSoft.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var strDefaultConnection = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddDbContext<Contexto>(options =>
+	options.UseSqlServer(strDefaultConnection));
 
 var app = builder.Build();
 
