@@ -9,5 +9,8 @@ namespace MechSoft.Models
 		{ }
 
 		public DbSet<Cliente> Clientes { get; set; }
+		public DbSet<Carro> Carros { get; set; }
+		public DbSet<Equipamento> Equipamentos { get; set; }
+
 	}
 }
