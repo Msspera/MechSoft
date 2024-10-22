@@ -25,20 +25,12 @@ namespace MechSoft.Models
 		[Required]
 		public CategoriasAtendimento Categoria { get; set; }
 
-		[Required]
-		public String BriefingChegada { get; set; }
+		public String? BriefingChegada { get; set; }
 
-		public List<Avaria> Avarias { get; set; } = new List<Avaria>();
+		public String? AvariasCompetentesMecanico { get; set; }
 
-
-
+		public String? AvariasNaoCompetentesMecanico { get; set; }
 
 	}
 
-	[NotMapped]
-	public class Avaria
-	{
-		public String Descricao { get; set; }
-		public bool CompeteAoMecanico { get; set; }
-	}
 }
