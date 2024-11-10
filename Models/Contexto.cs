@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using MechSoft.Models;
 
 namespace MechSoft.Models
 {
@@ -12,5 +13,12 @@ namespace MechSoft.Models
 		public DbSet<Carro> Carros { get; set; }
 		public DbSet<Equipamento> Equipamentos { get; set; }
 
-	}
+        public DbSet<Financeiro> Financeiros { get; set; }
+        public DbSet<Peca> Pecas { get; set; }
+		
+
+
+
+
+    }
 }

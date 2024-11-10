@@ -6,9 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddDbContext<Contexto>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("conexao")));
+
 var strDefaultConnection = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-builder.Services.AddDbContext<Contexto>(options =>
-	options.UseSqlServer(strDefaultConnection));
+builder.Services.AddDbContext<Contexto>(options =>options.UseSqlServer(strDefaultConnection));
 
 var app = builder.Build();
 
