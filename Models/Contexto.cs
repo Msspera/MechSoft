@@ -15,6 +15,7 @@ namespace MechSoft.Models
 
         public DbSet<Financeiro> Financeiros { get; set; }
         public DbSet<Peca> Pecas { get; set; }
+	    public DbSet<MechSoft.Models.Atendimento> Atendimento { get; set; } = default!;
 		
 
 
