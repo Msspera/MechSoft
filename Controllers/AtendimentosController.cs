@@ -23,6 +23,7 @@ namespace MechSoft.Controllers
         {
             return View(await _context.Atendimento.ToListAsync());
         }
+public async Task<IActionResult> Index() => View(await _context.Atendimentos.ToListAsync());
 
         // GET: Atendimentos/Details/5
         public async Task<IActionResult> Details(int? id)
