@@ -152,5 +152,7 @@ namespace MechSoft.Controllers
         {
             return _context.Financeiros.Any(e => e.Id == id);
         }
+
+
     }
 }

@@ -1,0 +1,42 @@
+﻿@{
+    ViewData["Title"] = "Histórico de Transações";
+}
+
+<h2>Caixa</h2>
+
+<p>Saldo Atual: R$ @ViewBag.Saldo</p>
+
+<h3>Histórico de Transações</h3>
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var transacao in ViewBag.Historico)
+        {
+            <tr>
+                <td>@transacao.Data</td>
+                <td>@transacao.Tipo</td>
+                <td>@transacao.Valor</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h3>Realizar Depósito</h3>
+<form method="post" asp-action="Depositar">
+    <label for="valorDeposito">Valor: </label>
+    <input type="number" id="valorDeposito" name="valor" step="0.01" required />
+    <button type="submit">Depositar</button>
+</form>
+
+<h3>Realizar Retirada</h3>
+<form method="post" asp-action="Retirar">
+    <label for="valorRetirada">Valor: </label>
+    <input type="number" id="valorRetirada" name="valor" step="0.01" required />
+    <button type="submit">Retirar</button>
+</form>
