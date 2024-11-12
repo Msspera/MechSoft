@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MechSoft.Models
 {
-	
+	/*
 	public enum EtapasAtendimento
 	{
 		Chegada,
@@ -14,16 +14,16 @@ namespace MechSoft.Models
 	{
 		Manutencao,
 		Rotina
-	}
+	}*/
 
 	public class Atendimento
 	{
 		[Key]
 		public int Id { get; set; }
 		[Required]
-		public EtapasAtendimento Etapa { get; set; }
+		public String? Etapa { get; set; }
 		[Required]
-		public CategoriasAtendimento Categoria { get; set; }
+		public String? Categoria { get; set; }
 
 		public String? BriefingChegada { get; set; }
 

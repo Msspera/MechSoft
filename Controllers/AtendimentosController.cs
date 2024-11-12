@@ -1,5 +1,9 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MechSoft.Models;
 
@@ -17,11 +21,9 @@ namespace MechSoft.Controllers
         // GET: Atendimentos
         public async Task<IActionResult> Index()
         {
-            return View(model: await _context.Atendimentos.ToListAsync());
-            
+            return View(await _context.Atendimentos.ToListAsync());
         }
-            
-       
+
         // GET: Atendimentos/Details/5
         public async Task<IActionResult> Details(int? id)
         {
