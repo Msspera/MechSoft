@@ -9,6 +9,10 @@ namespace MechSoft.Models
 		[Key]
 		public int Id { get; set; }
 
+		[Required, StringLength(7)]
+		[Display(Name = "Placa")]
+		public string Placa { get; set; }
+
 		[Required]
 		[StringLength(60)]
 		public string Modelo { get; set; }
@@ -16,9 +20,6 @@ namespace MechSoft.Models
 		[Required]
 		[StringLength(50)]
 		public string Marca { get; set; }
-
-		[Required, StringLength(7)]
-		public string Placa { get; set; }
 
 		[StringLength(30)]
 		public string Cor { get; set; }
@@ -52,8 +53,9 @@ namespace MechSoft.Models
 
 		[NotMapped]
 		// Denota se o carro está com a Troca de Óleo tem dia
-		public bool TrocaOleoRegular => this.UltimaTrocaOleo < this.ProximaTrocaOleo; 
+		public bool TrocaOleoRegular => this.UltimaTrocaOleo < this.ProximaTrocaOleo;
 
-
+		[InverseProperty("Carro")]
+		public List<Atendimento> Atendimentos { get; set; }
 	}
 }

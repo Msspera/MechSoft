@@ -11,6 +11,7 @@ namespace MechSoft.Models
 
 		[Required]
 		[StringLength(90)]
+		[Display(Name="Nome")]
 		public string Nome { get; set; }
 
 		[Required]
@@ -24,6 +25,9 @@ namespace MechSoft.Models
 		[Required]
 		[StringLength(120)]
 		public string Endereco { get; set; }
+
+		[InverseProperty("Cliente")]
+		public List<Atendimento> Atendimentos { get; set; }
 
 	}
 }

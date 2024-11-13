@@ -21,7 +21,8 @@ namespace MechSoft.Controllers
         // GET: Atendimentos
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Atendimentos.ToListAsync());
+            var contexto = _context.Atendimentos.Include(a => a.Carro).Include(a => a.Cliente);
+            return View(await contexto.ToListAsync());
         }
 
         // GET: Atendimentos/Details/5
@@ -33,6 +34,8 @@ namespace MechSoft.Controllers
             }
 
             var atendimento = await _context.Atendimentos
+                .Include(a => a.Carro)
+                .Include(a => a.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (atendimento == null)
             {
@@ -45,6 +48,8 @@ namespace MechSoft.Controllers
         // GET: Atendimentos/Create
         public IActionResult Create()
         {
+            ViewData["CarroId"] = new SelectList(_context.Carros, "Id", "Placa");
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome");
             return View();
         }
 
@@ -53,7 +58,7 @@ namespace MechSoft.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Etapa,Categoria,BriefingChegada,AvariasCompetentesMecanico,AvariasNaoCompetentesMecanico")] Atendimento atendimento)
+        public async Task<IActionResult> Create([Bind("Id,Etapa,Categoria,CarroId,ClienteId,BriefingChegada,AvariasCompetentesMecanico,AvariasNaoCompetentesMecanico,ServicosRealizados,ValorTotal")] Atendimento atendimento)
         {
             if (ModelState.IsValid)
             {
@@ -61,6 +66,8 @@ namespace MechSoft.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CarroId"] = new SelectList(_context.Carros, "Id", "Placa", atendimento.CarroId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome", atendimento.ClienteId);
             return View(atendimento);
         }
 
@@ -77,6 +84,8 @@ namespace MechSoft.Controllers
             {
                 return NotFound();
             }
+            ViewData["CarroId"] = new SelectList(_context.Carros, "Id", "Placa", atendimento.CarroId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome", atendimento.ClienteId);
             return View(atendimento);
         }
 
@@ -85,7 +94,7 @@ namespace MechSoft.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Etapa,Categoria,BriefingChegada,AvariasCompetentesMecanico,AvariasNaoCompetentesMecanico")] Atendimento atendimento)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Etapa,Categoria,CarroId,ClienteId,BriefingChegada,AvariasCompetentesMecanico,AvariasNaoCompetentesMecanico,ServicosRealizados,ValorTotal")] Atendimento atendimento)
         {
             if (id != atendimento.Id)
             {
@@ -112,6 +121,8 @@ namespace MechSoft.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["CarroId"] = new SelectList(_context.Carros, "Id", "Placa", atendimento.CarroId);
+            ViewData["ClienteId"] = new SelectList(_context.Clientes, "Id", "Nome", atendimento.ClienteId);
             return View(atendimento);
         }
 
@@ -124,6 +135,8 @@ namespace MechSoft.Controllers
             }
 
             var atendimento = await _context.Atendimentos
+                .Include(a => a.Carro)
+                .Include(a => a.Cliente)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (atendimento == null)
             {

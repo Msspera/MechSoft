@@ -4,6 +4,7 @@ using MechSoft.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MechSoft.Migrations
 {
     [DbContext(typeof(Contexto))]
-    partial class ContextoModelSnapshot : ModelSnapshot
+    [Migration("20241112233703_addForeignKeys")]
+    partial class addForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -39,25 +42,19 @@ namespace MechSoft.Migrations
                     b.Property<string>("BriefingChegada")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("CarroId")
+                    b.Property<int?>("CarroId")
                         .HasColumnType("int");
 
                     b.Property<string>("Categoria")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ClienteId")
+                    b.Property<int?>("ClienteId")
                         .HasColumnType("int");
 
                     b.Property<string>("Etapa")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ServicosRealizados")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float?>("ValorTotal")
-                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -229,15 +226,11 @@ namespace MechSoft.Migrations
                 {
                     b.HasOne("MechSoft.Models.Carro", "Carro")
                         .WithMany("Atendimentos")
-                        .HasForeignKey("CarroId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CarroId");
 
                     b.HasOne("MechSoft.Models.Cliente", "Cliente")
                         .WithMany("Atendimentos")
-                        .HasForeignKey("ClienteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClienteId");
 
                     b.Navigation("Carro");
 
